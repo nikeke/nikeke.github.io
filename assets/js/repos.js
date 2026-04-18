@@ -110,6 +110,7 @@ async function loadRepositories() {
 
     hideStatus();
   } catch (error) {
+    console.error(error);
     repoCount.textContent = "unavailable";
     showStatus("Could not load repositories right now. Please try again later.");
   }
