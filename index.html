@@ -2,21 +2,48 @@
 layout: default
 title: Repositories
 ---
+{% assign repositories = site.data.repositories | sort: "pushed_at" | reverse %}
 <main class="screen">
   <header class="hero">
     <p class="boot-line">READY.</p>
     <h1>nikeke repositories</h1>
     <p class="intro">
-      A small directory of projects, streamed live from GitHub.
+      A small directory of projects, pre-rendered for humans and crawlers.
     </p>
   </header>
 
   <section class="panel">
     <div class="panel-header">
       <span>catalog</span>
-      <span id="repo-count" aria-live="polite">loading...</span>
+      <span>{{ repositories | size }} repos</span>
     </div>
-    <div id="status" class="status" aria-live="polite">Connecting to GitHub...</div>
-    <ul id="repo-list" class="repo-list"></ul>
+    {% if repositories and repositories.size > 0 %}
+      <div class="status">Static repository index ready for search engines.</div>
+      <ul class="repo-list">
+        {% for repo in repositories %}
+          <li class="repo-item">
+            <a class="repo-link" href="{{ repo.html_url }}">{{ repo.name }}</a>
+            {% if repo.description and repo.description != "" %}
+              <p class="repo-description">{{ repo.description }}</p>
+            {% endif %}
+            <div class="repo-meta">
+              {% if repo.language and repo.language != "" %}
+                <span>lang {{ repo.language }}</span>
+              {% endif %}
+              {% if repo.fork %}
+                <span>fork</span>
+              {% endif %}
+              {% if repo.archived %}
+                <span>archived</span>
+              {% endif %}
+              <span>updated {{ repo.pushed_at | date: "%Y-%m-%d" }}</span>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="status">No public repositories found.</div>
+      <ul class="repo-list" hidden></ul>
+    {% endif %}
   </section>
 </main>
