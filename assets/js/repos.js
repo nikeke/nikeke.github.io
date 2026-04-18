@@ -24,25 +24,46 @@ function renderRepo(repo) {
   const item = document.createElement("li");
   item.className = "repo-item";
 
-  const description = repo.description
-    ? `<p class="repo-description">${repo.description}</p>`
-    : "";
-  const language = repo.language
-    ? `<span>lang ${repo.language}</span>`
-    : "";
-  const archived = repo.archived ? "<span>archived</span>" : "";
-  const fork = repo.fork ? "<span>fork</span>" : "";
+  const link = document.createElement("a");
+  link.className = "repo-link";
+  link.href = repo.html_url;
+  link.textContent = repo.name;
 
-  item.innerHTML = `
-    <a class="repo-link" href="${repo.html_url}">${repo.name}</a>
-    ${description}
-    <div class="repo-meta">
-      ${language}
-      ${fork}
-      ${archived}
-      <span>updated ${formatDate(repo.pushed_at)}</span>
-    </div>
-  `;
+  const meta = document.createElement("div");
+  meta.className = "repo-meta";
+
+  if (repo.language) {
+    const language = document.createElement("span");
+    language.textContent = `lang ${repo.language}`;
+    meta.appendChild(language);
+  }
+
+  if (repo.fork) {
+    const fork = document.createElement("span");
+    fork.textContent = "fork";
+    meta.appendChild(fork);
+  }
+
+  if (repo.archived) {
+    const archived = document.createElement("span");
+    archived.textContent = "archived";
+    meta.appendChild(archived);
+  }
+
+  const updated = document.createElement("span");
+  updated.textContent = `updated ${formatDate(repo.pushed_at)}`;
+  meta.appendChild(updated);
+
+  item.appendChild(link);
+
+  if (repo.description) {
+    const description = document.createElement("p");
+    description.className = "repo-description";
+    description.textContent = repo.description;
+    item.appendChild(description);
+  }
+
+  item.appendChild(meta);
 
   return item;
 }
@@ -83,4 +104,3 @@ async function loadRepositories() {
 }
 
 loadRepositories();
-
