@@ -78,15 +78,27 @@ async function loadRepositories() {
   showStatus("Connecting to GitHub...");
 
   try {
-    const response = await fetch(
-      `https://api.github.com/users/${encodeURIComponent(username)}/repos?per_page=100&sort=updated`
-    );
+    const repos = [];
+    let page = 1;
 
-    if (!response.ok) {
-      throw new Error(`GitHub API returned ${response.status}`);
+    while (true) {
+      const response = await fetch(
+        `https://api.github.com/users/${encodeURIComponent(username)}/repos?per_page=100&sort=updated&page=${page}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`GitHub API returned ${response.status}`);
+      }
+
+      const pageRepos = await response.json();
+      repos.push(...pageRepos);
+
+      if (pageRepos.length < 100) {
+        break;
+      }
+
+      page += 1;
     }
-
-    const repos = await response.json();
 
     repoCount.textContent = `${repos.length} repos`;
     repoList.replaceChildren(...repos.map(renderRepo));
