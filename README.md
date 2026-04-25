@@ -22,16 +22,17 @@ bundle exec jekyll serve
 Actions workflow, which runs:
 
 - **Daily at 03:00 UTC** (scheduled cron).
-- **On every push to `main`** that touches `_config.yml`,
-  `scripts/fetch_repositories.py`, or the workflow file itself.
+- **On every push to `main`** (so newly created or updated repos are picked up
+  whenever the site is updated).
 - **On demand** via the *workflow_dispatch* trigger in the GitHub Actions UI.
 
 The workflow calls `scripts/fetch_repositories.py`, which queries the GitHub
 REST API (`/users/{owner}/repos`) using the built-in `GITHUB_TOKEN` and
 regenerates `_data/repositories.yml` with the fields used by `index.html`:
 `name`, `html_url`, `description`, `language`, `fork`, `archived`,
-`pushed_at`.  A new commit is created only when the file actually changes, so
-the history stays clean.
+`pushed_at`.  Repos are fetched sorted by `pushed` date descending so the
+most recently active repositories are reliably included.  A new commit is
+created only when the file actually changes, so the history stays clean.
 
 To change the owner, update `repository_owner` in `_config.yml`.
 

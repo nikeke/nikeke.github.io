@@ -26,3 +26,10 @@
   fork: false
   archived: false
   pushed_at: "2026-04-25T18:59:29Z"
+- name: storq
+  html_url: "https://github.com/nikeke/storq"
+  description: "Small term-rewriting programming language implemented in Erlang"
+  language: Erlang
+  fork: false
+  archived: false
+  pushed_at: "2026-04-25T20:27:59Z"
