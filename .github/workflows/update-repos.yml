@@ -7,10 +7,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "_config.yml"
-      - "scripts/fetch_repositories.py"
-      - ".github/workflows/update-repos.yml"
   workflow_dispatch:
 
 permissions:

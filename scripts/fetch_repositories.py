@@ -30,7 +30,7 @@ def fetch_repos(owner: str) -> list[dict]:
     while True:
         url = (
             f"https://api.github.com/users/{owner}/repos"
-            f"?type=owner&per_page=100&page={page}"
+            f"?type=owner&sort=pushed&direction=desc&per_page=100&page={page}"
         )
         req = urllib.request.Request(url, headers=headers)
         try:
