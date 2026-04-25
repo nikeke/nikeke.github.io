@@ -1,0 +1,57 @@
+name: Refresh repository list
+
+on:
+  schedule:
+    # Run every day at 03:00 UTC
+    - cron: "0 3 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - "_config.yml"
+      - "scripts/fetch_repositories.py"
+      - ".github/workflows/update-repos.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch repositories from GitHub API
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          OWNER=$(python3 - <<'PYEOF'
+import re, sys
+text = open("_config.yml").read()
+m = re.search(r"^repository_owner:\s*[\"']?([^\s\"'#]+)", text, re.MULTILINE)
+if not m:
+    print("ERROR: repository_owner not found in _config.yml", file=sys.stderr)
+    sys.exit(1)
+print(m.group(1))
+PYEOF
+)
+          python scripts/fetch_repositories.py "$OWNER"
+
+      - name: Commit updated data (if changed)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/repositories.yml
+          if git diff --cached --quiet; then
+            echo "No changes – skipping commit."
+          else
+            git commit -m "chore: refresh repository list [skip ci]"
+            git push
+          fi
