@@ -32,16 +32,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          OWNER=$(python3 - <<'PYEOF'
-import re, sys
-text = open("_config.yml").read()
-m = re.search(r"^repository_owner:\s*[\"']?([^\s\"'#]+)", text, re.MULTILINE)
-if not m:
-    print("ERROR: repository_owner not found in _config.yml", file=sys.stderr)
-    sys.exit(1)
-print(m.group(1))
-PYEOF
-)
+          OWNER=$(grep -m1 '^repository_owner:' _config.yml | awk '{print $2}' | tr -d "\"'")
+          if [ -z "$OWNER" ]; then
+            echo "ERROR: repository_owner not found in _config.yml" >&2
+            exit 1
+          fi
           python scripts/fetch_repositories.py "$OWNER"
 
       - name: Commit updated data (if changed)
