@@ -1,31 +1,31 @@
-- name: nikeke.github.io
-  html_url: "https://github.com/nikeke/nikeke.github.io"
-  description: ""
-  language: Python
-  fork: false
-  archived: false
-  pushed_at: "2026-04-25T21:51:27Z"
 - name: leenef
   html_url: "https://github.com/nikeke/leenef"
   description: "Later experiments with Eliasmith's NEF"
   language: Python
   fork: false
   archived: false
-  pushed_at: "2026-04-25T21:48:32Z"
-- name: hairpin
-  html_url: "https://github.com/nikeke/hairpin"
-  description: "Toy, dynamically-typed, stack-based programming language with RPN syntax"
-  language: Python
-  fork: false
-  archived: false
-  pushed_at: "2026-04-25T20:31:13Z"
+  pushed_at: "2026-04-26T20:35:35Z"
 - name: storq
   html_url: "https://github.com/nikeke/storq"
   description: Small term-rewriting programming language implemented in Erlang
   language: Erlang
   fork: false
   archived: false
-  pushed_at: "2026-04-25T20:27:59Z"
+  pushed_at: "2026-04-26T13:23:29Z"
+- name: hairpin
+  html_url: "https://github.com/nikeke/hairpin"
+  description: "Toy, dynamically-typed, stack-based programming language with RPN syntax"
+  language: Python
+  fork: false
+  archived: false
+  pushed_at: "2026-04-26T06:27:12Z"
+- name: nikeke.github.io
+  html_url: "https://github.com/nikeke/nikeke.github.io"
+  description: ""
+  language: Python
+  fork: false
+  archived: false
+  pushed_at: "2026-04-26T04:12:17Z"
 - name: morstaca
   html_url: "https://github.com/nikeke/morstaca"
   description: "morstaca: Morita-style one-dimensional reversible cellular automata"
