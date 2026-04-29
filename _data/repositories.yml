@@ -1,17 +1,17 @@
-- name: nikeke.github.io
-  html_url: "https://github.com/nikeke/nikeke.github.io"
-  description: ""
-  language: Python
-  fork: false
-  archived: false
-  pushed_at: "2026-04-27T04:16:25Z"
 - name: leenef
   html_url: "https://github.com/nikeke/leenef"
   description: "Later experiments with Eliasmith's NEF"
   language: Python
   fork: false
   archived: false
-  pushed_at: "2026-04-26T20:35:35Z"
+  pushed_at: "2026-04-29T04:15:34Z"
+- name: nikeke.github.io
+  html_url: "https://github.com/nikeke/nikeke.github.io"
+  description: ""
+  language: Python
+  fork: false
+  archived: false
+  pushed_at: "2026-04-28T04:18:34Z"
 - name: storq
   html_url: "https://github.com/nikeke/storq"
   description: Small term-rewriting programming language implemented in Erlang
