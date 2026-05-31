@@ -1,17 +1,17 @@
-- name: nikeke.github.io
-  html_url: "https://github.com/nikeke/nikeke.github.io"
-  description: ""
-  language: Python
-  fork: false
-  archived: false
-  pushed_at: "2026-05-29T04:32:18Z"
 - name: leenef
   html_url: "https://github.com/nikeke/leenef"
   description: "Later experiments with Eliasmith's NEF"
   language: Python
   fork: false
   archived: false
-  pushed_at: "2026-05-27T19:42:06Z"
+  pushed_at: "2026-05-30T19:38:59Z"
+- name: nikeke.github.io
+  html_url: "https://github.com/nikeke/nikeke.github.io"
+  description: ""
+  language: Python
+  fork: false
+  archived: false
+  pushed_at: "2026-05-30T04:24:59Z"
 - name: copilot-bwrap
   html_url: "https://github.com/nikeke/copilot-bwrap"
   description: GitHub Copilot CLI inside bubblewrap
