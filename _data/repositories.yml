@@ -4,7 +4,7 @@
   language: Python
   fork: false
   archived: false
-  pushed_at: "2026-11-12T03:09:23Z"
+  pushed_at: "2026-11-13T03:09:08Z"
 - name: copilot-bwrap
   html_url: "https://github.com/nikeke/copilot-bwrap"
   description: GitHub Copilot CLI inside bubblewrap
